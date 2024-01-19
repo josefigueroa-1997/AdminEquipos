@@ -32,7 +32,7 @@ namespace AdminEquipoApi.Models
                 entity.Property(e => e.Nombre)
                    .IsUnicode(false).HasMaxLength(200)
                    .HasColumnName("NOMBRE").IsRequired();
-
+                entity.HasIndex(e => e.Nombre).IsUnique();
             });
             modelBuilder.Entity<Comuna>(entity =>
             {
@@ -42,10 +42,11 @@ namespace AdminEquipoApi.Models
                 entity.Property(e => e.Nombre)
                    .IsUnicode(false).HasMaxLength(200)
                    .HasColumnName("NOMBRE").IsRequired();
-
+                entity.HasIndex(e => e.Nombre).IsUnique();
                 entity.HasOne(e => e.Region).WithMany()
                 .HasForeignKey(e => e.ID_REGION).HasConstraintName("ID_REGION_FK")
                 .OnDelete(DeleteBehavior.Cascade);
+                
             });
             OnModelCreatingPartial(modelBuilder);
         }

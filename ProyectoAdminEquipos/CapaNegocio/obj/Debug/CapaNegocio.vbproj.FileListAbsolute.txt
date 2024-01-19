@@ -1,0 +1,16 @@
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapaNegocio.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapaNegocio.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapaNegocio.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapadeDatos.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\Newtonsoft.Json.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapadeDatos.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\CapadeDatos.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\bin\Debug\Newtonsoft.Json.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.vbproj.AssemblyReference.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.Resources.resources
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.vbproj.GenerateResource.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.vbproj.CoreCompileInputs.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.vbproj.CopyComplete
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapaNegocio\obj\Debug\CapaNegocio.pdb

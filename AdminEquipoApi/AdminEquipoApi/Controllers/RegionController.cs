@@ -30,6 +30,14 @@ namespace AdminEquipoApi.Controllers
         {
             try
             {
+                if(dbContext.Regiones.Any(r=>r.Nombre == nuevaregion.Nombre))
+                {
+                    return BadRequest("Ya existe una región con ese nombre.");
+                }
+                if(nuevaregion.Nombre == null)
+                {
+                    return BadRequest("Debe ingresar un nombre");
+                }
                 var nuevo = new Region{
 
                     Nombre = nuevaregion.Nombre,
@@ -59,7 +67,10 @@ namespace AdminEquipoApi.Controllers
                 {
                     return NotFound($"No se encontró la región con ID {idregion}");
                 }
-
+                if (dbContext.Regiones.Any(r => r.Nombre == nuevonombre.Nombre))
+                {
+                    return BadRequest("Ya existe una región con ese nombre.");
+                }
                 region.Nombre = nuevonombre.Nombre;
                 dbContext.SaveChanges();
 

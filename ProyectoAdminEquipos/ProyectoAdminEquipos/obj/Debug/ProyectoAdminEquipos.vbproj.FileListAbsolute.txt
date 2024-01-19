@@ -78,3 +78,9 @@ G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquip
 G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\obj\Debug\ProyectoAdminEquipos.dll
 G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\obj\Debug\WebForms_Basic.xml
 G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\obj\Debug\ProyectoAdminEquipos.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapadeDatos.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapaNegocio.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapadeDatos.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapadeDatos.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapaNegocio.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\ProyectoAdminEquipos\bin\CapaNegocio.xml

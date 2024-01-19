@@ -2,6 +2,7 @@ using AdminEquipoApi;
 using AdminEquipoApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using AdminEquipoApi.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
     // Configura la ruta base
     c.DocumentFilter<BasePathDocumentFilter>("api/controller");
 });
-
+builder.Services.AddScoped<ComunaService>();
 
 var app = builder.Build();
 

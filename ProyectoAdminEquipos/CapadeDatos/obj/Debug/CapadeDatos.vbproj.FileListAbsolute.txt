@@ -1,0 +1,13 @@
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\bin\Debug\CapadeDatos.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\bin\Debug\CapadeDatos.pdb
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\bin\Debug\CapadeDatos.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\bin\Debug\Newtonsoft.Json.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\bin\Debug\Newtonsoft.Json.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.vbproj.AssemblyReference.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.Resources.resources
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.vbproj.GenerateResource.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.vbproj.CoreCompileInputs.cache
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.vbproj.CopyComplete
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.dll
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.xml
+G:\arriendonet\AdminEquipos\AdminEquipos\ProyectoAdminEquipos\CapadeDatos\obj\Debug\CapadeDatos.pdb
