@@ -22,7 +22,7 @@ namespace AdminEquipoApi.Models
 
         public virtual DbSet<Region> Regiones { get; set; } = null!;
         public virtual DbSet<Comuna> Comunas { get; set; } = null!;
-
+        public virtual DbSet<Oficina> Oficinas { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Region>(entity =>
@@ -47,6 +47,18 @@ namespace AdminEquipoApi.Models
                 .HasForeignKey(e => e.ID_REGION).HasConstraintName("ID_REGION_FK")
                 .OnDelete(DeleteBehavior.Cascade);
                 
+            });
+            modelBuilder.Entity<Oficina>(entity =>
+            {
+                entity.ToTable("OFICINA");
+                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.ID_COMUNA).IsRequired();
+                entity.Property(e => e.Nombre).IsUnicode(false).HasMaxLength(200)
+                   .HasColumnName("NOMBRE").IsRequired();
+                entity.HasIndex(e => e.Nombre).IsUnique();
+                entity.HasOne(e => e.Comuna).WithMany()
+                .HasForeignKey(e => e.ID_COMUNA).HasConstraintName("ID_COMUNA_FK")
+                .OnDelete(DeleteBehavior.Cascade);
             });
             OnModelCreatingPartial(modelBuilder);
         }

@@ -34,7 +34,7 @@ namespace AdminEquipoApi.Controllers
                 {
                     return BadRequest("Ya existe una región con ese nombre.");
                 }
-                if(nuevaregion.Nombre == null)
+                if(nuevaregion.Nombre == null || nuevaregion.Nombre.Trim() == "")
                 {
                     return BadRequest("Debe ingresar un nombre");
                 }
@@ -70,6 +70,10 @@ namespace AdminEquipoApi.Controllers
                 if (dbContext.Regiones.Any(r => r.Nombre == nuevonombre.Nombre))
                 {
                     return BadRequest("Ya existe una región con ese nombre.");
+                }
+                if (nuevonombre.Nombre == null || nuevonombre.Nombre.Trim() == "")
+                {
+                    return BadRequest("Debe ingresar un nombre");
                 }
                 region.Nombre = nuevonombre.Nombre;
                 dbContext.SaveChanges();

@@ -26,15 +26,22 @@ namespace AdminEquipoApi.Service
                 {
                     resultado = false;
                 }
-                
-                var nuevacomuna = new Comuna
+                if(comuna.Nombre.Trim() == "")
                 {
-                    ID_REGION = comuna.ID_REGION,
-                    Nombre = comuna.Nombre,
-                };
-                dbContext.Add(nuevacomuna);
-                dbContext.SaveChanges();
-                resultado = true;
+                    resultado = false;
+                }
+                else
+                {
+                    var nuevacomuna = new Comuna
+                    {
+                        ID_REGION = comuna.ID_REGION,
+                        Nombre = comuna.Nombre,
+                    };
+                    dbContext.Add(nuevacomuna);
+                    dbContext.SaveChanges();
+                    resultado = true;
+                }
+                
                 return resultado;
             }
             catch(Exception e)
@@ -107,9 +114,9 @@ namespace AdminEquipoApi.Service
             }
 
         }
-        public async Task<bool> EditarComuna(int id, [FromBody] Comuna comuna)
+        public async Task<bool> EditarComuna(int id, [FromBody] Comuna actcomuna)
         {
-            Boolean resultado = false;
+            bool resultado = false;
             try
             {
                 var comunaid =  dbContext.Comunas.Where(c => c.Id == id).FirstOrDefault();
@@ -120,14 +127,14 @@ namespace AdminEquipoApi.Service
                 }
                 else
                 {
-                    if (dbContext.Comunas.Any(r => r.Nombre == comunaid.Nombre))
+                    if (dbContext.Comunas.Any(r => r.Nombre == actcomuna.Nombre))
                     {
                         resultado = false;
                     }
                     else
                     {
-                        comunaid.Nombre = comuna.Nombre;
-                        comunaid.ID_REGION = comuna.ID_REGION;
+                        comunaid.Nombre = actcomuna.Nombre;
+                        comunaid.ID_REGION = actcomuna.ID_REGION;
                         await dbContext.SaveChangesAsync();
                         resultado = true;
                     }
@@ -142,6 +149,29 @@ namespace AdminEquipoApi.Service
                 Debug.WriteLine(e.Message);
                 return resultado;
             }
+        }
+
+        public async Task<bool> EliminarComuna(int id)
+        {
+            
+            try
+            {
+                var comuna = dbContext.Comunas.Where(c => c.Id == id).FirstOrDefault();
+                if (comuna == null)
+                {
+                   return false;
+                }
+                dbContext.Comunas.Remove(comuna);
+                await dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+
         }
     }
 }

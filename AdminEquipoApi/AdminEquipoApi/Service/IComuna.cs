@@ -9,5 +9,6 @@ namespace AdminEquipoApi.Service
         Task<List<Comuna>> ObtenerComuna(int? id);
         public List<ComunaDTO> AsignarCOMUNADTO(List<Comuna> comuna);
         Task<bool> EditarComuna(int id, [FromBody] Comuna comuna);
+        Task<bool> EliminarComuna(int id);
     }
 }

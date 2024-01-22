@@ -179,6 +179,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Views\Comunas.aspx" />
     <Content Include="Views\Regiones.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -249,6 +250,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.vb">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunas.aspx.designer.vb">
+      <DependentUpon>Comunas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunas.aspx.vb">
+      <DependentUpon>Comunas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Views\Regiones.aspx.designer.vb">
       <DependentUpon>Regiones.aspx</DependentUpon>

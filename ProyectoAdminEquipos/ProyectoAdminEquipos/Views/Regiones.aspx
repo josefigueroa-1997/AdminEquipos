@@ -1,39 +1,35 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Regiones.aspx.vb" Inherits="ProyectoAdminEquipos.Regiones" Async="true"%>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Regiones.aspx.vb" MasterPageFile="~/Site.Master" Inherits="ProyectoAdminEquipos.Regiones" Async="true"%>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form method="post" runat="server">
-        <div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand">
-                <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
-                    <asp:BoundField DataField="Id" HeaderText="ID" SortExpression="Id" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                    <asp:TemplateField HeaderText="Acciones">
-                        <ItemTemplate>
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+     <form method="post" runat="server">
+        <div class="overflow-x-auto">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand"
+            CssClass="min-w-full bg-white border rounded-lg shadow overflow-hidden">
+            <Columns>
+             <asp:CommandField ShowSelectButton="True" />
+             <asp:BoundField DataField="Id" HeaderText="ID" SortExpression="Id" ItemStyle-CssClass="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" />
+             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" ItemStyle-CssClass="px-6 py-4 whitespace-nowrap text-sm text-gray-500" />
+                <asp:TemplateField HeaderText="Acciones" ItemStyle-CssClass="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <ItemTemplate>
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="text-red-500 hover:text-red-700 focus:outline-none focus:underline" />
+                </ItemTemplate>
+              </asp:TemplateField>
+        </Columns>
+        <HeaderStyle CssClass="bg-gray-50" />
+        <RowStyle CssClass="even:bg-gray-100 odd:bg-gray-50" />
+    </asp:GridView>
         </div>
 
-        <label>Nombre</label>
-        <asp:TextBox ID="TextBox1"  runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Enviar" OnClick="Button1_Click"/>
-        <asp:Button ID="UpdateButton" Visible="false" runat="server" Text="Editar" OnClick="UpdateButton_Click" />
+        <label class="text-xl font-bold">Nombre</label>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="border p-2 mt-2" />
+        <asp:Button ID="Button1" runat="server" Text="Enviar" OnClick="Button1_Click" CssClass="bg-blue-500 text-white px-4 py-2 rounded" />
+        <asp:Button ID="UpdateButton" Visible="false" runat="server" Text="Editar" OnClick="UpdateButton_Click" CssClass="bg-green-500 text-white px-4 py-2 rounded" />
         <br />
+    </form>
         <div style="color:red;">
             <asp:Label ID="Label1" Visible="false" runat="server" Text="Label">Esa Región ya se encuentra registrado</asp:Label>
         </div>
         
-       
-    </form>
-</body>
-</html>
+ </asp:Content>     
+

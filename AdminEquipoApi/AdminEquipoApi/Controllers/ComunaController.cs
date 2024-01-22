@@ -47,5 +47,35 @@ namespace AdminEquipoApi.Controllers
 
             
         }
+        [HttpPut]
+        [Route("UpdateComuna/{id}")]
+        public async Task <IActionResult> UpdateComuna(int id, [FromBody] Comuna comuna)
+        {
+            bool resultado = await comunaService.EditarComuna(id,comuna);
+            
+            if (resultado)
+            {
+                return Ok("¡Éxito en la acutalización!");
+            }
+            else
+            {
+                return BadRequest("Hubo un error en la actualización");
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteComuna/{id}")]
+        public async Task <IActionResult> DeleteComuna(int id)
+        {
+            bool resultado = await comunaService.EliminarComuna(id);
+            if (resultado)
+            {
+                return Ok("La comuna fue eliminada con éxito");
+            }
+            else
+            {
+                return BadRequest("Hubo un error en la eliminación");
+            }
+        }
     }
 }

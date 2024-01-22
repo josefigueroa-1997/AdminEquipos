@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
     c.DocumentFilter<BasePathDocumentFilter>("api/controller");
 });
 builder.Services.AddScoped<ComunaService>();
-
+builder.Services.AddScoped<OficinaService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
