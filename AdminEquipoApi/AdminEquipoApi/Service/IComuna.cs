@@ -6,7 +6,7 @@ namespace AdminEquipoApi.Service
     public interface IComuna
     {
         public bool AgregarComuna([FromBody] Comuna comuna);
-        Task<List<Comuna>> ObtenerComuna(int? id);
+        Task<List<Comuna>> ObtenerComuna(int? id,int? idregion);
         public List<ComunaDTO> AsignarCOMUNADTO(List<Comuna> comuna);
         Task<bool> EditarComuna(int id, [FromBody] Comuna comuna);
         Task<bool> EliminarComuna(int id);

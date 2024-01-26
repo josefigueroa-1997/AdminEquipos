@@ -23,6 +23,10 @@ namespace AdminEquipoApi.Service
                 {
                     return false;
                 }
+                if(oficina.Nombre.Trim() == "")
+                {
+                    return false;
+                }
                 var nuevaoficina = new Oficina
                 {
                     ID_COMUNA = oficina.ID_COMUNA,
@@ -46,19 +50,19 @@ namespace AdminEquipoApi.Service
             {
                 if (id.HasValue)
                 {
-                    var oficinas = await dbContext.Oficinas.Where(o=>o.Id == id).Include(c=>c.Comuna).Select(o => new Oficina
+                    var oficinas = await dbContext.Oficinas.Where(o=>o.Id == id).Include(c=>c.Comuna).ThenInclude(r=>r.Region).Select(o => new Oficina
                     {
                         Id = o.Id,
                         ID_COMUNA = o.ID_COMUNA,
                         Nombre = o.Nombre,
                         Comuna = o.Comuna,
-
+                        
                     }).ToListAsync();
                     return oficinas;
                 }
                 else
                 {
-                    var oficinas = await dbContext.Oficinas.Include(c => c.Comuna).Select(o => new Oficina
+                    var oficinas = await dbContext.Oficinas.Include(c => c.Comuna).ThenInclude(r => r.Region).Select(o => new Oficina
                     {
                         Id = o.Id,
                         ID_COMUNA = o.ID_COMUNA,
@@ -87,6 +91,7 @@ namespace AdminEquipoApi.Service
                     Nombre = o.Nombre,
                     ID_COMUNA = o.ID_COMUNA,
                     NombreComuna = o.Comuna != null ? o.Comuna.Nombre : "Sin Comuna",
+                    ID_REGION = o.Comuna.Region.Id,
                 }).ToList();
 
                 return oficinasdto;
@@ -97,6 +102,51 @@ namespace AdminEquipoApi.Service
                 Debug.WriteLine(e.Message);
                 return new List<OficinaDTO>();
             }
+        }
+
+        public async Task<Boolean> ActualizarOficina(int idoficina, [FromBody] Oficina actualizaroficina)
+        {
+            try
+            {
+                var oficina = dbContext.Oficinas.Where(o => o.Id == idoficina).FirstOrDefault();
+                if (oficina != null)
+                {
+                    oficina.Nombre = actualizaroficina.Nombre;
+                    oficina.ID_COMUNA = actualizaroficina.ID_COMUNA;
+                    await dbContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;    
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+            
+        }
+
+        public async Task<bool> EliminarOficina(int id)
+        {
+            try
+            {
+                var oficina = dbContext.Oficinas.Where(o => o.Id == id).FirstOrDefault();
+                if (oficina != null)
+                {
+                    dbContext.Oficinas.Remove(oficina);
+                    await dbContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+            
         }
 
     }

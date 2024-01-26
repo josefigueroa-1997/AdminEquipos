@@ -53,45 +53,81 @@ namespace AdminEquipoApi.Service
             }
         }
 
-        public async Task<List<Comuna>> ObtenerComuna(int? id)
+        public async Task<List<Comuna>> ObtenerComuna(int? id, int? idregion)
         {
             try
             {
-                
-                if (id.HasValue)
+                // Caso 1: Ambos id e idregion son nulos
+                if (!id.HasValue && !idregion.HasValue)
                 {
-                     var comunas = await dbContext.Comunas.Where(c=>c.Id  == id).Include(r => r.Region).Select(c => new Comuna
-                    {
-                        Id = c.Id,
-                        ID_REGION = c.ID_REGION,
-                        Nombre = c.Nombre,
-                        Region = c.Region,
-                    })
-               .ToListAsync();
+                    var comunas = await dbContext.Comunas
+                        .Include(r => r.Region)
+                        .Select(c => new Comuna
+                        {
+                            Id = c.Id,
+                            ID_REGION = c.ID_REGION,
+                            Nombre = c.Nombre,
+                            Region = c.Region,
+                        })
+                        .ToListAsync();
 
                     return comunas;
                 }
-                else
+
+                // Caso 2: Solo id está presente
+                if (id.HasValue && !idregion.HasValue)
                 {
-                    var comunas = await dbContext.Comunas.Include(r => r.Region).Select(c => new Comuna
+                    var comuna = await dbContext.Comunas
+                        .Where(c => c.Id == id)
+                        .Include(r => r.Region)
+                        .Select(c => new Comuna
+                        {
+                            Id = c.Id,
+                            ID_REGION = c.ID_REGION,
+                            Nombre = c.Nombre,
+                            Region = c.Region,
+                        })
+                        .FirstOrDefaultAsync();
+
+                    if (comuna != null)
                     {
-                        Id = c.Id,
-                        ID_REGION = c.ID_REGION,
-                        Nombre = c.Nombre,
-                        Region = c.Region,
-                    })
-               .ToListAsync();
+                        return new List<Comuna> { comuna };
+                    }
+                    else
+                    {
+                        return new List<Comuna>();
+                    }
+                }
+
+                // Caso 3: Solo idregion está presente
+                if (!id.HasValue && idregion.HasValue)
+                {
+                    
+                    var comunas = await dbContext.Comunas
+                        .Where(c => c.ID_REGION == idregion)
+                        .Include(r => r.Region)
+                        .Select(c => new Comuna
+                        {
+                            Id = c.Id,
+                            ID_REGION = c.ID_REGION,
+                            Nombre = c.Nombre,
+                            Region = c.Region,
+                        })
+                        .ToListAsync();
 
                     return comunas;
                 }
-               
+
+                // Otros casos (puedes agregar más casos según sea necesario)
+                return new List<Comuna>();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
                 return new List<Comuna>();
             }
         }
+
 
         public List<ComunaDTO> AsignarCOMUNADTO(List<Comuna> comuna)
         {

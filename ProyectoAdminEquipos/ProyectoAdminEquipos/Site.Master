@@ -19,8 +19,8 @@
         <div class="bg-black text-white w-64 py-8 px-6 md:flex-shrink-0">
             <!-- Agrega aquí tus enlaces de navegación -->
             <a runat="server" href="~/Views/Regiones" class="block py-2">Regiones</a>
-            <a href="#" class="block py-2">Enlace 2</a>
-            <a href="#" class="block py-2">Enlafdfdfce 3</a>
+            <a runat="server" href="~/Views/Comunas" class="block py-2">Comunas</a>
+            <a runat="server" href="~/Views/Oficinas" class="block py-2">Oficinas</a>
         </div>
 
         <!-- Contenido principal -->

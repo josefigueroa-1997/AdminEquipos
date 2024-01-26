@@ -30,14 +30,14 @@ namespace AdminEquipoApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetComunas/{id?}")]
-        public async Task <IActionResult> GetComunas(int? id)
+        [Route("GetComunas")]
+        public async Task <IActionResult> GetComunas([FromQuery]int? id,[FromQuery]int? idregion)
         {
             try
             {
-                var comunas = await comunaService.ObtenerComuna(id);
-                var comunasoto = comunaService.AsignarCOMUNADTO(comunas);
-                return Ok(comunasoto);
+                var comunas = await comunaService.ObtenerComuna(id,idregion);
+                var comunasdto = comunaService.AsignarCOMUNADTO(comunas);
+                return Ok(comunasdto);
             }
             catch (Exception e){
 

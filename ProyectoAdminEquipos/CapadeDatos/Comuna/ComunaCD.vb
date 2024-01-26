@@ -8,10 +8,10 @@ Imports System.Reflection.Emit
 
 Public Class ComunaCD
 
-    Public Async Function ObtenerComunas(id As Integer?) As Task(Of List(Of Comuna))
+    Public Async Function ObtenerComunas(id As Integer?, idregion As Integer?) As Task(Of List(Of Comuna))
         Try
             Using httpclient As New HttpClient()
-                Dim apiurl As String = $"https://localhost:7127/Comuna/GetComunas/{id}"
+                Dim apiurl As String = $"https://localhost:7127/Comuna/GetComunas?id={id}&idregion={idregion}"
                 Dim response = Await httpclient.GetAsync(apiurl)
                 If response.IsSuccessStatusCode Then
                     Dim jsonstring = Await response.Content.ReadAsStringAsync()

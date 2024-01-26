@@ -6,5 +6,7 @@
         public string Nombre { get; set; } = null!;
         public int ID_COMUNA { get; set; }
         public string NombreComuna { get; set; } = null!;
+        public int ID_REGION { get; set; }
+        
     }
 }

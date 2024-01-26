@@ -84,6 +84,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Oficina\OficinaCN.vb" />
     <Compile Include="Region\RegionCN.vb" />
   </ItemGroup>
   <ItemGroup>

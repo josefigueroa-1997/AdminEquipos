@@ -3,8 +3,8 @@ Public Class ComunaCN
 
     Private ReadOnly comunacd As New ComunaCD
 
-    Public Async Function ObtenerComunasCN(id As Integer?) As Task(Of List(Of Comuna))
-        Return Await comunacd.ObtenerComunas(id)
+    Public Async Function ObtenerComunasCN(id As Integer?, idregion As Integer?) As Task(Of List(Of Comuna))
+        Return Await comunacd.ObtenerComunas(id, idregion)
     End Function
     Public Async Function AgregarComunaCN(idregion As Integer, nombre As String) As Task
         Await comunacd.AgregarComuna(idregion, nombre)

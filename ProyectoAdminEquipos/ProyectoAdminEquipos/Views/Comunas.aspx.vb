@@ -2,17 +2,19 @@
 Imports System.Threading.Tasks
 Public Class Comunas
     Inherits System.Web.UI.Page
-    Protected ReadOnly comunacn As New ComunaCN()
+    Private ReadOnly comunacn As New ComunaCN()
     Protected ReadOnly regioncn As New RegionCN()
     Protected Async Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
+            Dim idreg As Integer?
+            If Not String.IsNullOrEmpty(Request.QueryString("idregion")) Then
+                idreg = Integer.Parse(Request.QueryString("idregion"))
+            End If
             Dim id As Integer?
-
             If Not String.IsNullOrEmpty(Request.QueryString("id")) Then
                 id = Integer.Parse(Request.QueryString("id"))
             End If
-
-            Await CargarGridView(id)
+            Await CargarGridView(id, idreg)
             Await CargarDropDownList()
         End If
     End Sub
@@ -32,11 +34,15 @@ Public Class Comunas
         If e.CommandName = "Eliminar" Then
             Dim ideliminar As Integer = Convert.ToInt32(e.CommandArgument)
             Await comunacn.EliminarComunaCN(ideliminar)
+            Dim idreg As Integer?
+            If Not String.IsNullOrEmpty(Request.QueryString("idregion")) Then
+                idreg = Integer.Parse(Request.QueryString("idregion"))
+            End If
             Dim id As Integer?
             If Not String.IsNullOrEmpty(Request.QueryString("id")) Then
                 id = Integer.Parse(Request.QueryString("id"))
             End If
-            Await CargarGridView(id)
+            Await CargarGridView(id, idreg)
         End If
     End Sub
     Protected Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -46,14 +52,18 @@ Public Class Comunas
         Await comunacn.AgregarComunaCN(idregion, nombre)
         TextBox1.Text = ""
         ddlRegiones.SelectedIndex = 0
+        Dim idreg As Integer?
+        If Not String.IsNullOrEmpty(Request.QueryString("idregion")) Then
+            idreg = Integer.Parse(Request.QueryString("idregion"))
+        End If
         Dim id As Integer?
         If Not String.IsNullOrEmpty(Request.QueryString("id")) Then
             id = Integer.Parse(Request.QueryString("id"))
         End If
-        Await CargarGridView(id)
+        Await CargarGridView(id, idreg)
     End Sub
-    Private Async Function CargarGridView(id As Integer?) As Task
-        Dim comunas = Await comunacn.ObtenerComunasCN(id)
+    Private Async Function CargarGridView(id As Integer?, idregion As Integer?) As Task
+        Dim comunas = Await comunacn.ObtenerComunasCN(id, idregion)
         GridView1.DataSource = comunas
         GridView1.DataBind()
     End Function
@@ -72,12 +82,15 @@ Public Class Comunas
         Await comunacn.ActualizarComunaCN(idcomuna, idregion, nombrecomuna)
         TextBox1.Text = ""
         ddlRegiones.SelectedIndex = 0
+        Dim idreg As Integer?
+        If Not String.IsNullOrEmpty(Request.QueryString("idregion")) Then
+            idreg = Integer.Parse(Request.QueryString("idregion"))
+        End If
         Dim id As Integer?
         If Not String.IsNullOrEmpty(Request.QueryString("id")) Then
             id = Integer.Parse(Request.QueryString("id"))
         End If
-        UpdateButton.Visible = False
-        Await CargarGridView(id)
+        Await CargarGridView(id, idreg)
     End Sub
 
 End Class
