@@ -15,4 +15,10 @@ Public Class ComunaCN
     Public Async Function EliminarComunaCN(idcomuna As Integer) As Task
         Await comunacd.EliminarComuna(idcomuna)
     End Function
+    Public Sub AgregarElementoddl(comunas As List(Of Comuna))
+        comunacd.Agregarelemento(comunas)
+    End Sub
+    Public Function ObtenerIdComunaCN(nombre As String, comuna As List(Of Comuna)) As Integer
+        Return comunacd.ObtenerIdComuna(nombre, comuna)
+    End Function
 End Class

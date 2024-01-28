@@ -1,6 +1,6 @@
 ﻿
 Imports CapaNegocio
-
+Imports System.Data.OleDb
 Imports System.Threading.Tasks
 Public Class Oficinas
     Inherits System.Web.UI.Page
@@ -25,20 +25,32 @@ Public Class Oficinas
         End If
         Await CargarddlComunas(id, ddlRegiones.SelectedValue)
     End Sub
-    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+    Protected Sub ddlComunas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlComunas.SelectedIndexChanged
+        TextBox2.Text = ddlComunas.SelectedItem.Text
+    End Sub
+    Protected Async Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
         If GridView1.SelectedIndex >= 0 Then
             Dim idoficina As Integer = Convert.ToInt32(GridView1.SelectedRow.Cells(1).Text)
+            Dim oficina = Await oficinacn.ObtenerOficinas(idoficina)
+            Dim region = oficinacn.ObtenerRegionOficinaCN(idoficina, oficina)
+            Dim comuna = oficinacn.ObtenerComunaOficinaCN(idoficina, oficina)
             ViewState("IdSeleccionado") = idoficina
             Dim nombreoficina As String = GridView1.SelectedRow.Cells(2).Text
             TextBox1.Text = nombreoficina
-            Dim idcomuna As Integer = Convert.ToInt32(GridView1.SelectedRow.Cells(3).Text)
-            Dim idregiones As Integer = Convert.ToInt32(GridView1.SelectedRow.Cells(5).Text)
-            ddlRegiones.SelectedValue = idregiones
-            ddlComunas.SelectedValue = idcomuna
+            ddlRegiones.SelectedValue = region
+            TextBox2.Visible = True
+            Label2.Visible = True
+            TextBox2.Text = comuna
+            UpdateButton.Visible = True
         End If
     End Sub
-    Protected Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
-
+    Protected Async Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        If e.CommandName = "Eliminar" Then
+            Dim ideliminar As Integer = Convert.ToInt32(e.CommandArgument)
+            Await EliminarOficina(ideliminar)
+            Dim id As Integer?
+            Await cargargridview(id)
+        End If
 
     End Sub
     Private Async Function cargargridview(id As Integer?) As Task
@@ -48,9 +60,7 @@ Public Class Oficinas
     End Function
     Protected Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim nombreoficina As String = TextBox1.Text
-        Debug.WriteLine(nombreoficina)
         Dim idcomuna As Integer = ddlComunas.SelectedItem.Value
-        Debug.WriteLine(idcomuna)
         Await oficinacn.AgregarOficinaCN(nombreoficina, idcomuna)
         TextBox1.Text = ""
         ddlRegiones.SelectedIndex = 0
@@ -69,11 +79,34 @@ Public Class Oficinas
     End Function
     Public Async Function CargarddlComunas(idcomunas As Integer?, idregion As Integer?) As Task
         Dim comunas = Await comunacn.ObtenerComunasCN(idcomunas, idregion)
+        comunacn.AgregarElementoddl(comunas)
         ddlComunas.DataSource = comunas
         ddlComunas.DataValueField = "Id"
         ddlComunas.DataTextField = "Nombre"
         ddlComunas.DataBind()
     End Function
-
-
+    Private Async Function EliminarOficina(idoficina As Integer) As Task
+        Await oficinacn.EliminarOficinaCN(idoficina)
+    End Function
+    Protected Async Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
+        Dim idoficina As Integer = Convert.ToInt32(ViewState("IdSeleccionado"))
+        Dim id As Integer?
+        Dim idregion As Integer?
+        Dim comunas = Await comunacn.ObtenerComunasCN(id, idregion)
+        Dim nombrecomuna As String = TextBox2.Text
+        Dim idcomuna As Integer = comunacn.ObtenerIdComunaCN(nombrecomuna, comunas)
+        Debug.WriteLine(idcomuna)
+        Dim nombreoficina As String = TextBox1.Text
+        Await oficinacn.ActualizarOficinaCN(idoficina, idcomuna, nombreoficina)
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        ddlComunas.SelectedIndex = 0
+        ddlRegiones.SelectedIndex = 0
+        UpdateButton.Visible = False
+        Dim ids As Integer?
+        If Not String.IsNullOrEmpty(Request.QueryString("id")) Then
+            id = Integer.Parse(Request.QueryString("id"))
+        End If
+        Await cargargridview(ids)
+    End Sub
 End Class

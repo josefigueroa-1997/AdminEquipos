@@ -4,6 +4,7 @@ Imports System.Net
 Imports System.Text
 Imports System.Net.Http
 Imports Newtonsoft.Json
+Imports System.Web.UI.WebControls
 Imports System.Reflection.Emit
 
 Public Class ComunaCD
@@ -85,6 +86,21 @@ Public Class ComunaCD
         Catch ex As Exception
             Debug.WriteLine(ex.Message)
         End Try
+    End Function
+
+    Public Sub Agregarelemento(comunas As List(Of Comuna))
+        Dim comuna = comunas
+        comuna.Insert(0, New Comuna With {.Id = 0, .Nombre = "Seleccione una comuna"})
+
+    End Sub
+
+    Public Function ObtenerIdComuna(nombre As String, comuna As List(Of Comuna)) As Integer
+        For Each i In comuna
+            If i.Nombre = nombre Then
+                Return i.Id
+            End If
+        Next
+        Return Nothing
     End Function
 
 End Class
