@@ -23,6 +23,8 @@ namespace AdminEquipoApi.Models
         public virtual DbSet<Region> Regiones { get; set; } = null!;
         public virtual DbSet<Comuna> Comunas { get; set; } = null!;
         public virtual DbSet<Oficina> Oficinas { get; set; } = null!;
+        public virtual DbSet<Dispositivo> Dispositivos { get; set; } = null!;
+        public virtual DbSet<Aplicacion> Aplicaciones { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Region>(entity =>
@@ -59,6 +61,39 @@ namespace AdminEquipoApi.Models
                 entity.HasOne(e => e.Comuna).WithMany()
                 .HasForeignKey(e => e.ID_COMUNA).HasConstraintName("ID_COMUNA_FK")
                 .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<Dispositivo>(entity =>
+            {
+                entity.ToTable("DISPOSITIVO");
+                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.ID_OFICINA).IsRequired();
+                entity.HasOne(e => e.Oficina).WithMany().
+                HasForeignKey(e => e.ID_OFICINA).HasConstraintName("ID_OFICINA_FK").OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(e => e.Tipodispositivo).IsUnicode(false)
+                .HasMaxLength(200).HasColumnName("TIPODISPOSITIVO").IsRequired();
+
+                entity.HasCheckConstraint("TIPODISPOSITIVO_CHECK", "[TIPODISPOSITIVO] IN ('servidor','impresora','pc','celular')");
+
+                entity.Property(e => e.cpu).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("CPU").IsRequired();
+
+                entity.Property(e => e.disco_duro).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("DISCO_DURO").IsRequired();
+
+                entity.Property(e => e.ram).IsUnicode(false)
+                .HasMaxLength(200).HasColumnName("RAM").IsRequired();
+
+            });
+            modelBuilder.Entity<Aplicacion>(entity => {
+
+                entity.ToTable("APLICACION");
+                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Nombre).IsUnicode(false).
+                HasMaxLength(200).HasColumnName("NOMBRE").IsRequired();
+                entity.HasIndex(e => e.Nombre).IsUnique();
+            
+            
             });
             OnModelCreatingPartial(modelBuilder);
         }
