@@ -24,6 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddScoped<ComunaService>();
 builder.Services.AddScoped<OficinaService>();
+builder.Services.AddScoped<AplicacionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
