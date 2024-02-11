@@ -87,9 +87,10 @@ namespace AdminEquipoApi.Service
                     Id = d.Id,
                     tipodispositivo = d.Tipodispositivo,
                     cpu = d.cpu,
+                    disco_duro = d.disco_duro,
                     ram = d.ram,
                     id_oficina = d.Oficina != null ? d.Oficina.Id : 0,
-                    nomnbreoficina = d.Oficina != null ? d.Oficina.Nombre : "Sin Oficina",
+                    nombreoficina = d.Oficina != null ? d.Oficina.Nombre : "Sin Oficina",
                 }).ToList();
                 return dispositivodto;
             }
@@ -114,7 +115,7 @@ namespace AdminEquipoApi.Service
                     disp.Tipodispositivo = dispositivo.Tipodispositivo;
                     disp.disco_duro = dispositivo.disco_duro;
                     disp.ram = dispositivo.ram;
-                    disp.cpu = dispositivo.disco_duro;
+                    disp.cpu = dispositivo.cpu;
                     disp.ID_OFICINA = disp.ID_OFICINA;
                     await dbContext.SaveChangesAsync();
                     return true;

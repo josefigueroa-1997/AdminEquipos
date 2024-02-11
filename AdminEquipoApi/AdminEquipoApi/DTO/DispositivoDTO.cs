@@ -9,7 +9,7 @@
         public string ram { get; set; } = null!;
         public string disco_duro { get; set; } = null!;
         public int id_oficina { get; set; }
-        public string nomnbreoficina { get; set; } = null!;
+        public string nombreoficina { get; set; } = null!;
 
     }
 }
