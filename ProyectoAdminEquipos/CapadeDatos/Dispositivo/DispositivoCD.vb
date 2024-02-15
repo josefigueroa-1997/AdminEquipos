@@ -9,7 +9,7 @@ Public Class DispositivoCD
     Public Async Function ObtenerDispositivos(id As Integer?) As Task(Of List(Of Dispositivo))
         Try
             Using httpclient As New HttpClient()
-                Dim apiurl As String = $"https://localhost:7127/Dispositivo/GetDispositivos/{id}"
+                Dim apiurl As String = $"https://localhost:7127/Dispositivo/GetDispositivo/{id}"
                 Dim response = Await httpclient.GetAsync(apiurl)
                 If response.IsSuccessStatusCode Then
                     Dim jsonstring = Await response.Content.ReadAsStringAsync()
@@ -79,7 +79,7 @@ Public Class DispositivoCD
     Public Async Function EliminarDispositivo(id As Integer) As Task
         Try
             Using httpclient As New HttpClient
-                Dim apiurl As String = $"https://localhost:7127/Dispositivo/UpdateDispositivo/{id}"
+                Dim apiurl As String = $"https://localhost:7127/Dispositivo/DeleteDispositivo/{id}"
                 Dim response = Await httpclient.DeleteAsync(apiurl)
                 If response.IsSuccessStatusCode Then
                     Dim mensaje = response.Content.ReadAsStringAsync()

@@ -15,5 +15,6 @@ namespace AdminEquipoApi.Models
         public string ram { get; set; } = null!;
         [ForeignKey("ID_OFICINA")]
         public virtual Oficina? Oficina{ get; set; }
+        public virtual ICollection<Dispositivo_Aplicacion> Dispositivo_Aplicacions { get; set; } = new List<Dispositivo_Aplicacion>();
     }
 }

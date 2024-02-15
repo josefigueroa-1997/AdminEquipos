@@ -10,5 +10,6 @@ namespace AdminEquipoApi.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
+        public virtual ICollection<Dispositivo_Aplicacion> Dispositivo_Aplicacions { get; set; } = new List<Dispositivo_Aplicacion>();
     }
 }

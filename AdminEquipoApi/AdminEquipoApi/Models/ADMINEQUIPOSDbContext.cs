@@ -25,6 +25,8 @@ namespace AdminEquipoApi.Models
         public virtual DbSet<Oficina> Oficinas { get; set; } = null!;
         public virtual DbSet<Dispositivo> Dispositivos { get; set; } = null!;
         public virtual DbSet<Aplicacion> Aplicaciones { get; set; } = null!;
+        public virtual DbSet<Dispositivo_Aplicacion> Dispositivo_Aplicacions { get; set; } = null!;
+        public virtual DbSet<MONITOREO_DISP_APP> MONITOREO_DISP_APPs { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Region>(entity =>
@@ -95,6 +97,46 @@ namespace AdminEquipoApi.Models
             
             
             });
+            modelBuilder.Entity<Dispositivo_Aplicacion>(entity =>
+            {
+                entity.ToTable("DISPOISITIVO_APLICACION");
+                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.ID_Dispositivo).IsRequired();
+                entity.HasOne(e => e.Dispositivo).WithMany(e => e.Dispositivo_Aplicacions)
+                .HasForeignKey(e => e.ID_Dispositivo).HasConstraintName("ID_DISPOSITVO_APLICACION_FK").OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(e => e.ID_Aplicacion).IsRequired();
+                entity.HasOne(e => e.Aplicacion).WithMany(e => e.Dispositivo_Aplicacions)
+                .HasForeignKey(e => e.ID_Aplicacion).HasConstraintName("ID_DISPOSITVO_APLICACIONES_FK").OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(e => e.Fecha_instalacion).IsRequired().IsUnicode(false);
+
+            });
+            modelBuilder.Entity<MONITOREO_DISP_APP>(entity =>
+            {
+                entity.ToTable("MONITOREO_DISP_APP");
+                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.ID_DISPOSITIVO_APP).IsRequired();
+
+                entity.HasOne(e => e.Dispositivo_Aplicacion).WithMany()
+                .HasForeignKey(e => e.ID_DISPOSITIVO_APP).HasConstraintName("ID_DISPOSITIVO_FK").OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(e => e.Estado_CPU).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("ESTADO_CPU").IsRequired();
+
+                entity.Property(e => e.Estado_RAM).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("ESTADO_RAM").IsRequired();
+
+                entity.Property(e => e.Estado_DISCODURO).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("ESTADO_DISCODURO").IsRequired();
+
+                entity.Property(e => e.Estado_APLICACION).IsUnicode(false)
+                .HasMaxLength(100).HasColumnName("ESTADO_APLICACION").IsRequired();
+
+
+
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

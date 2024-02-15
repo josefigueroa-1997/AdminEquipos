@@ -116,7 +116,7 @@ namespace AdminEquipoApi.Service
                     disp.disco_duro = dispositivo.disco_duro;
                     disp.ram = dispositivo.ram;
                     disp.cpu = dispositivo.cpu;
-                    disp.ID_OFICINA = disp.ID_OFICINA;
+                    disp.ID_OFICINA = dispositivo.ID_OFICINA;
                     await dbContext.SaveChangesAsync();
                     return true;
                 }
