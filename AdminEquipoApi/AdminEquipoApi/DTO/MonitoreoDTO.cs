@@ -9,7 +9,7 @@
         public string Estado_DISCODURO { get; set; } = null!;
         public string Estado_APLICACION { get; set; } = null!;
         public string tipodispositivo { get; set; } = null!;
-        public string nombreapp { get; set; } = null!;
+    
 
 
 

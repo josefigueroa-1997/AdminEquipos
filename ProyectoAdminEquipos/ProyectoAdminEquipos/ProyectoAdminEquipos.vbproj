@@ -180,9 +180,12 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Views\Comunas.aspx" />
+    <Content Include="Views\DetalleMonitoreo.aspx" />
     <Content Include="Views\Dispositivo.aspx" />
+    <Content Include="Views\Monitoreos.aspx" />
     <Content Include="Views\Oficinas.aspx" />
     <Content Include="Views\Regiones.aspx" />
+    <Content Include="Views\RegistrarMonitoreo.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -260,11 +263,25 @@
       <DependentUpon>Comunas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Views\DetalleMonitoreo.aspx.designer.vb">
+      <DependentUpon>DetalleMonitoreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetalleMonitoreo.aspx.vb">
+      <DependentUpon>DetalleMonitoreo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Views\Dispositivo.aspx.designer.vb">
       <DependentUpon>Dispositivo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Dispositivo.aspx.vb">
       <DependentUpon>Dispositivo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Views\Monitoreos.aspx.designer.vb">
+      <DependentUpon>Monitoreos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Monitoreos.aspx.vb">
+      <DependentUpon>Monitoreos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Views\Oficinas.aspx.designer.vb">
@@ -280,6 +297,13 @@
     <Compile Include="Views\Regiones.aspx.vb">
       <DependentUpon>Regiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RegistrarMonitoreo.aspx.designer.vb">
+      <DependentUpon>RegistrarMonitoreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistrarMonitoreo.aspx.vb">
+      <DependentUpon>RegistrarMonitoreo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

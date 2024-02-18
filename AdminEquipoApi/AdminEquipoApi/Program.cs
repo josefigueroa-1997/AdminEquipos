@@ -27,6 +27,7 @@ builder.Services.AddScoped<OficinaService>();
 builder.Services.AddScoped<AplicacionService>();
 builder.Services.AddScoped<DispositivoService>();
 builder.Services.AddScoped<Dispositivo_AplicacionService>();
+builder.Services.AddScoped<MonitoreoSerivice>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -59,8 +59,8 @@ Public Class OficinaCD
                 Dim content As New StringContent(jsonoficina, Encoding.UTF8, "application/json")
                 Dim response = Await httpclient.PutAsync(apiurl, content)
                 If response.IsSuccessStatusCode Then
-                    Dim mensaje = response.Content.ReadAsStringAsync()
-                    Debug.WriteLine(mensaje)
+                    Dim mensaje = Await response.Content.ReadAsStringAsync()
+                    Debug.WriteLine("La actualización fue exitosa:" & mensaje)
                 Else
                     Dim mensajeerror = response.Content.ReadAsStringAsync()
                     Debug.WriteLine(mensajeerror)

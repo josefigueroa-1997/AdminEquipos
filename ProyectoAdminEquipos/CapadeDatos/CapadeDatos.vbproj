@@ -74,6 +74,10 @@
     <Compile Include="Comuna\CrearComuna.vb" />
     <Compile Include="Dispositivo\Dispositivo.vb" />
     <Compile Include="Dispositivo\DispositivoCD.vb" />
+    <Compile Include="Disp_App\Disp_AppCD.vb" />
+    <Compile Include="Disp_App\Dis_App.vb" />
+    <Compile Include="Monitoreo\Monitoreo.vb" />
+    <Compile Include="Monitoreo\MonitoreoCD.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

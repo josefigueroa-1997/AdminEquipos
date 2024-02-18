@@ -22,6 +22,7 @@
             <a runat="server" href="~/Views/Comunas" class="block py-2">Comunas</a>
             <a runat="server" href="~/Views/Oficinas" class="block py-2">Oficinas</a>
             <a runat="server" href="~/Views/Dispositivo" class="block py-2">Dispositivos</a>
+            <a runat="server" href="~/Views/Monitoreos" class="block py-2">Monitoreos</a>
         </div>
 
         <!-- Contenido principal -->

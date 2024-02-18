@@ -46,7 +46,7 @@ namespace AdminEquipoApi.Service
             {
                 if (id.HasValue)
                 {
-                    var monitoreos = await dbContext.MONITOREO_DISP_APPs.Where(m => m.Id == id).Include(d=>d.Dispositivo_Aplicacion).Select(m => new MONITOREO_DISP_APP
+                    var monitoreos = await dbContext.MONITOREO_DISP_APPs.Where(m => m.Id == id).Include(d=>d.Dispositivo_Aplicacion).ThenInclude(d => d.Dispositivo).Select(m => new MONITOREO_DISP_APP
                     {
                         Id = m.Id,
                         ID_DISPOSITIVO_APP = m.ID_DISPOSITIVO_APP,
@@ -60,7 +60,7 @@ namespace AdminEquipoApi.Service
                 }
                 else
                 {
-                    var monitoreos = await dbContext.MONITOREO_DISP_APPs.Include(d=>d.Dispositivo_Aplicacion).Select(m => new MONITOREO_DISP_APP
+                    var monitoreos = await dbContext.MONITOREO_DISP_APPs.Include(d=>d.Dispositivo_Aplicacion).ThenInclude(d=>d.Dispositivo).Select(m => new MONITOREO_DISP_APP
                     {
                         Id = m.Id,
                         ID_DISPOSITIVO_APP = m.ID_DISPOSITIVO_APP,
@@ -97,8 +97,7 @@ namespace AdminEquipoApi.Service
                     ? mdto.Dispositivo_Aplicacion.Dispositivo.Tipodispositivo
                     : "NO TIENE TIPO DISPOSITIVO",
 
-                    nombreapp = mdto.Dispositivo_Aplicacion !=null && mdto.Dispositivo_Aplicacion.Aplicacion !=null ? 
-                    mdto.Dispositivo_Aplicacion.Aplicacion.Nombre : "NO TIENE APLICACIÓN",
+                   
             }).ToList();
                 return monitoreosdto;
             }
@@ -112,7 +111,7 @@ namespace AdminEquipoApi.Service
         {
             try
             {
-                var monitoreo = dbContext.MONITOREO_DISP_APPs.Find(id);
+                var monitoreo = dbContext.MONITOREO_DISP_APPs.Where(m=>m.Id==id).FirstOrDefault();
                 if(monitoreo == null)
                 {
                     return false;
